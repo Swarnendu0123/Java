@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class fractionalKnapsack {
     public static void main(String[] args) {
         int value[] = { 60, 100, 120 };
@@ -9,13 +11,11 @@ public class fractionalKnapsack {
             product[i][1] = weight[i];
             product[i][2] = value[i] / weight[i];
         }
-        // product array should be sorted in decreasing order of 3rd row ie :
-        // product[i][2]
-        // Arrays.sort(product, Comparator.comparingDouble(o -> o[2]));
+        Arrays.sort(product, Comparator.comparingDouble(o -> o[2]));
         int capacity = 0;
         float money = 0;
-        int i = 0;
-        while ((capacity < W) && (i < value.length)) {
+        int i = product[0].length - 1;
+        while ((capacity < W) && (i >= 0)) {
             if (W - capacity > product[i][1]) {
                 capacity += product[i][1];
                 money += product[i][0];
@@ -23,7 +23,7 @@ public class fractionalKnapsack {
                 money = money + (product[i][2]) * (W - capacity);
                 capacity = W;
             }
-            i++;
+            i--;
         }
         System.out.println("Money = " + money);
     }
