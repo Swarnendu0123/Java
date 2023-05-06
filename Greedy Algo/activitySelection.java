@@ -2,9 +2,9 @@ import java.util.*;
 
 public class activitySelection {
     public static void main(String[] args) {
-        int start[] = { 1, 3, 0, 5, 8, 5 };
+        int start[] = { 3, 0, 8, 5, 1, 5 };
         // activity is sorted according to end time
-        int end[] = { 2, 4, 6, 7, 9, 9 };
+        int end[] = { 4, 6, 9, 9, 2, 7 };
 
         // sorting
         int activitys[][] = new int[start.length][3];
@@ -28,7 +28,7 @@ public class activitySelection {
 
         for (int i = 0; i < end.length; i++) {
             // non overlaping
-            if (start[i] >= lastEnd) {
+            if (activitys[i][1] >= lastEnd) {
                 maxAct++;
                 lastEnd = activitys[i][2];
                 ans.add(activitys[i][0]);
