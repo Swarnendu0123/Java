@@ -89,13 +89,23 @@ public class binaryTreesB {
                 }
             }
         }
+
+        // function to calculate tree height
+        public static int height(Node root) {
+            // base case
+            if (root == null) {
+                return 0;
+            }
+            // recurtion step
+            return 1 + Math.max(height(root.left), height(root.right));
+        }
     }
 
     public static void main(String[] args) {
         int[] tree = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
         BineryTree bt = new BineryTree();
         Node root = bt.buildTree(tree);
-        bt.levelOrder(root);
+        System.out.println(bt.height(root));
 
     }
 }
