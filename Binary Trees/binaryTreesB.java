@@ -124,10 +124,10 @@ public class binaryTreesB {
         if (root == null) {
             return 0;
         }
-        int ld = diameter(root.left);
-        int rd = diameter(root.right);
-        int lh = height(root.left);
-        int rh = height(root.right);
+        int ld = diameter(root.left);// left dia
+        int rd = diameter(root.right);// right dia
+        int lh = height(root.left);// left height
+        int rh = height(root.right);// right height
         int maxD = Math.max(ld, rd);
         return Math.max(maxD, lh + rh + 1);
     }
