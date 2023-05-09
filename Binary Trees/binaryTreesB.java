@@ -17,7 +17,7 @@ public class binaryTreesB {
     static class BineryTree {
         static int idx = -1;
 
-        public static Node buildTree(int nodes[]) {
+        public Node buildTree(int nodes[]) {
             idx++;
             if (nodes[idx] == -1) {
                 return null;
@@ -99,13 +99,31 @@ public class binaryTreesB {
             // recurtion step
             return 1 + Math.max(height(root.left), height(root.right));
         }
+
+        // function to count nodes of a tree
+        public static int countNodes(Node root) {
+            // base case
+            if (root == null) {
+                return 0;
+            }
+            // recurtion step
+            return 1 + countNodes(root.left) + countNodes(root.right);
+        }
+
+        // function to calculate the sum of nodes
+        public static int sumOfNodes(Node root) {
+            if (root == null) {
+                return 0;
+            }
+            return root.data + sumOfNodes(root.left) + sumOfNodes(root.right);
+        }
+
     }
 
     public static void main(String[] args) {
         int[] tree = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
         BineryTree bt = new BineryTree();
         Node root = bt.buildTree(tree);
-        System.out.println(bt.height(root));
-
+        System.out.println(bt.sumOfNodes(root));
     }
 }
