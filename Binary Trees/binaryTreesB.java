@@ -110,6 +110,7 @@ public class binaryTreesB {
         // recurtion step
         return 1 + countNodes(root.left) + countNodes(root.right);
     }
+    
 
     // function to calculate the sum of nodes
     public static int sumOfNodes(Node root) {
