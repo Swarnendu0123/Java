@@ -133,12 +133,12 @@ public class binaryTreesB {
         return Math.max(maxD, lh + rh + 1);
     }
 
-    // information class
-    static class info {
+    // info2rmation class
+    static class info2 {
         int dia;
         int height;
 
-        info(int dia, int height) {
+        info2(int dia, int height) {
             this.dia = dia;
             this.height = height;
         }
@@ -146,18 +146,18 @@ public class binaryTreesB {
 
     // function to calculate dia
     // approch 2 (Efficient in time)
-    public static info diameter2(Node root) {
+    public static info2 diameter2(Node root) {
         // base case
         if (root == null) {
-            return new info(0, 0);
+            return new info2(0, 0);
         }
         // recurtion step
-        info leftInfo = diameter2(root.left);
-        info rightInfo = diameter2(root.right);
+        info2 leftinfo2 = diameter2(root.left);
+        info2 rightinfo2 = diameter2(root.right);
 
-        int height = Math.max(leftInfo.height, rightInfo.height) + 1;
-        int dia = Math.max(Math.max(leftInfo.dia, rightInfo.dia), leftInfo.height + rightInfo.height + 1);
-        return (new info(dia, height));
+        int height = Math.max(leftinfo2.height, rightinfo2.height) + 1;
+        int dia = Math.max(Math.max(leftinfo2.dia, rightinfo2.dia), leftinfo2.height + rightinfo2.height + 1);
+        return (new info2(dia, height));
     }
 
     // helping function for is subtree
@@ -190,6 +190,52 @@ public class binaryTreesB {
         return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
     }
 
+    static class info {
+        Node root;
+        int HorDist;
+
+        info(Node root, int HorDist) {
+            this.HorDist = HorDist;
+            this.root = root;
+        }
+    }
+
+    // function to print top view of a tree
+    public static void topView(Node root) {
+        Queue<info> q = new LinkedList<>();
+        HashMap<Integer, Node> map = new HashMap<>();
+        int max = 0;
+        int min = 0;
+        q.add(new info(root, 0));
+        q.add(null);
+        while (!q.isEmpty()) {
+            info curr = q.remove();
+            if (curr == null) {
+                if (q.isEmpty()) {
+                    break;
+                } else {
+                    q.add(null);
+                }
+            } else {
+                if (!map.containsKey(curr.HorDist)) {
+                    map.put(curr.HorDist, curr.root);
+                }
+                if (curr.root.left != null) {
+                    q.add(new info(curr.root.left, curr.HorDist - 1));
+                    min = Math.min(min, curr.HorDist - 1);
+                }
+                if (curr.root.right != null) {
+                    q.add(new info(curr.root.right, curr.HorDist + 1));
+                    max = Math.max(max, curr.HorDist + 1);
+                }
+            }
+        }
+        for (int i = min; i <= max; i++) {
+            System.out.print(map.get(i).data + " ");
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         // main tree
         Node root = new Node(1);
@@ -202,6 +248,6 @@ public class binaryTreesB {
         Node subroot = new Node(2);
         subroot.left = new Node(4);
         subroot.right = new Node(5);
-        System.out.println(isSubtree(root, subroot));
+        topView(root);
     }
 }
