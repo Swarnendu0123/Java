@@ -62,7 +62,7 @@ public class binaryTreesB {
         System.out.print(root.data + " ");
     }
 
-    // function to print lveel order tree
+    // function to print level order tree
     public static void levelOrder(Node root) {
         if (root == null) {
             return;
@@ -160,7 +160,9 @@ public class binaryTreesB {
         return (new info(dia, height));
     }
 
+    // helping function for is subtree
     public static boolean isIdentical(Node root, Node subRoot) {
+        // base case
         if (root == null && subRoot == null) {
             return true;
         } else if (root == null || subRoot == null || root.data != subRoot.data) {
@@ -175,9 +177,8 @@ public class binaryTreesB {
         return true;
     }
 
+    // function to check subtree is exist in a tree or not
     public static boolean isSubtree(Node root, Node subRoot) {
-
-        // base case
         if (root == null) {
             return false;
         }
@@ -190,12 +191,17 @@ public class binaryTreesB {
     }
 
     public static void main(String[] args) {
-        int[] tree1 = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
-        int[] tree2 = { 2, 4, -1, -1, 5, -1, -1 };
-        int[] tree3 = { 1, 2, 4, 9, -1, -1, -1, 5, -1, 6, -1, 7, -1, -1, 3, -1, -1 };
-        BineryTree tree = new BineryTree();
-        Node root = tree.buildTree(tree3);
-        Node subroot = tree.buildTree(tree2);
+        // main tree
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.right = new Node(6);
+        // sub tree
+        Node subroot = new Node(2);
+        subroot.left = new Node(4);
+        subroot.right = new Node(5);
         System.out.println(isSubtree(root, subroot));
     }
 }
