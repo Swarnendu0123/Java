@@ -110,7 +110,6 @@ public class binaryTreesB {
         // recurtion step
         return 1 + countNodes(root.left) + countNodes(root.right);
     }
-    
 
     // function to calculate the sum of nodes
     public static int sumOfNodes(Node root) {
@@ -121,6 +120,7 @@ public class binaryTreesB {
     }
 
     // function to calculate diameter of a tree
+    // approch 1
     public static int diameter(Node root) {
         if (root == null) {
             return 0;
@@ -133,11 +133,69 @@ public class binaryTreesB {
         return Math.max(maxD, lh + rh + 1);
     }
 
+    // information class
+    static class info {
+        int dia;
+        int height;
+
+        info(int dia, int height) {
+            this.dia = dia;
+            this.height = height;
+        }
+    }
+
+    // function to calculate dia
+    // approch 2 (Efficient in time)
+    public static info diameter2(Node root) {
+        // base case
+        if (root == null) {
+            return new info(0, 0);
+        }
+        // recurtion step
+        info leftInfo = diameter2(root.left);
+        info rightInfo = diameter2(root.right);
+
+        int height = Math.max(leftInfo.height, rightInfo.height) + 1;
+        int dia = Math.max(Math.max(leftInfo.dia, rightInfo.dia), leftInfo.height + rightInfo.height + 1);
+        return (new info(dia, height));
+    }
+
+    public static boolean isIdentical(Node root, Node subRoot) {
+        if (root == null && subRoot == null) {
+            return true;
+        } else if (root == null || subRoot == null || root.data != subRoot.data) {
+            return false;
+        }
+        if (!isIdentical(root.left, subRoot.left)) {
+            return false;
+        }
+        if (!isIdentical(root.right, subRoot.right)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isSubtree(Node root, Node subRoot) {
+
+        // base case
+        if (root == null) {
+            return false;
+        }
+        if (root.data == subRoot.data) {
+            if (isIdentical(root, subRoot)) {
+                return true;
+            }
+        }
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    }
+
     public static void main(String[] args) {
         int[] tree1 = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
-        int[] tree2 = { 1, 2, 4, 9, -1, -1, -1, 5, -1, 6, -1, 7, -1, -1, 3, -1, -1 };
-        BineryTree bt = new BineryTree();
-        Node root = bt.buildTree(tree2);
-        System.out.println(diameter(root));
+        int[] tree2 = { 2, 4, -1, -1, 5, -1, -1 };
+        int[] tree3 = { 1, 2, 4, 9, -1, -1, -1, 5, -1, 6, -1, 7, -1, -1, 3, -1, -1 };
+        BineryTree tree = new BineryTree();
+        Node root = tree.buildTree(tree3);
+        Node subroot = tree.buildTree(tree2);
+        System.out.println(isSubtree(root, subroot));
     }
 }
