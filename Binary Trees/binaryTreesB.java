@@ -320,6 +320,35 @@ public class binaryTreesB {
         return max + 1;
     }
 
+    // sum tree (my approch)
+    public static int sumTree(Node root) {
+        if (root == null) {
+            return -1;
+        }
+        int l = sumTree(root.left);
+        int r = sumTree(root.right);
+        int data = root.data;
+        if (l == -1 && r == -1) {
+            data = root.data;
+            root.data = 0;
+            return data;
+        }
+        root.data = l + r + root.left.data + root.right.data;
+        return data;
+    }
+
+    // sum tree (shraddha didi's approch)
+    public static int sumTree2(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        int l = sumTree2(root.left);
+        int r = sumTree2(root.right);
+        int data = root.data;
+        root.data = l + r;
+        return data + l + r;
+    }
+
     public static void main(String[] args) {
         // main tree
         // 1
@@ -335,9 +364,17 @@ public class binaryTreesB {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
         // sub tree
+        // 2
+        // / \
+        // 4 5
         Node subroot = new Node(2);
         subroot.left = new Node(4);
         subroot.right = new Node(5);
-        System.out.println(minDist(root, 2, 4));
+        levelOrder(root);
+        sumTree(root);
+        // 27
+        // 9 13
+        // 0 0 0 0
+        levelOrder(root);
     }
 }
