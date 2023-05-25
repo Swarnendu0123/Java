@@ -94,13 +94,21 @@ Before contributing, please make sure to review the [Guidelines](#guidelines) se
 
 To ensure a productive and collaborative environment, we have set some guidelines for contributing:
 
-- Familiarize yourself with the existing codebase and structure before making changes or additions.
+- Familiarize yourself with the existing codebase and structure before making changes or additions. Take some time to understand the organization and naming conventions used in the repository.
 
-- Follow the coding conventions and style used in the repository to maintain consistency.
+- Follow the coding conventions and style used in the repository to maintain consistency. Adhere to the established formatting guidelines, variable naming conventions, and code structure.
 
-- Write clear and concise commit messages that describe the changes made.
+- Write clear and concise commit messages that describe the changes made. A good commit message helps reviewers and future contributors understand the purpose and impact of your changes.
 
-- When adding new code, include appropriate documentation and comments to explain its functionality.
+- When adding new code, include appropriate documentation and comments to explain its functionality. Use descriptive function and variable names to improve code readability. Document any assumptions, limitations, or important considerations in the code comments.
 
-- All contributions should be well
+- All contributions should be well-tested to ensure code reliability and correctness. Write test cases that cover various scenarios and edge cases. Make sure the existing test suite passes successfully before submitting your changes.
+
+- Ensure that your contributions do not introduce any breaking changes to the existing codebase. If your changes require modifications to other parts of the repository, make sure to update the affected code accordingly.
+
+- Be respectful and considerate of other contributors. Provide constructive feedback and engage in meaningful discussions. Collaboration is key to making this repository a success.
+
+- If you encounter any issues, bugs, or have ideas for improvements, feel free to open an issue in the repository. Provide a clear description of the problem or suggestion, along with any relevant details or examples.
+
+By following these guidelines, we can maintain a high standard of code quality, documentation, and collaboration within the repository. Thank you for your contributions and for helping make this project a valuable resource for the DSA community!
 
