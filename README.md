@@ -36,7 +36,7 @@ To contribute to this repository, you will need to follow these steps:
 
    ```
 
-   git clone https://github.com/your-username/data-structures-algorithms-java.git
+   git clone https://github.com/Swarnendu0123/Java
 
    ```
 
