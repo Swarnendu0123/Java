@@ -12,13 +12,6 @@ Welcome to the Data Structures and Algorithms in Java repository! This is an ope
 
 - [Guidelines](#guidelines)
 
-- [Code Structure](#code-structure)
-
-- [Testing](#testing)
-
-- [Resources](#resources)
-
-- [License](#license)
 
 ## Introduction
 
