@@ -128,12 +128,217 @@ public class BST {
         return;
     }
 
+    // function to calculate max value of a tree
+    public static int maxVal(Node root) {
+        if (root == null) {
+            return Integer.MIN_VALUE;
+        }
+        return Math.max(root.data, Math.max(maxVal(root.left), maxVal(root.right)));
+    }
+
+    // function to calculate min value of a tree
+    public static int minVal(Node root) {
+        if (root == null) {
+            return Integer.MAX_VALUE;
+        }
+        return Math.min(root.data, Math.min(minVal(root.left), minVal(root.right)));
+    }
+
+    // function for valid BST (my Approch)
+    public static boolean validBST(Node root) {
+        if (root == null) {
+            return true;
+        }
+        if (root.left == null && root.right == null) {
+            return true;
+        }
+        if (root.right != null) {
+            int rightmin = minVal(root.right);
+            if (root.data > rightmin) {
+                return false;
+            }
+        }
+        if (root.left != null) {
+            int leftmax = maxVal(root.left);
+            if (root.data < leftmax) {
+                return false;
+            }
+        }
+        if ((!validBST(root.left)) || (!validBST(root.right))) {
+            return false;
+        }
+        return true;
+    }
+
+    // function for vaid BST (Shraddha didi's approch)
+    public static boolean validBST(Node root, Node min, Node max) {
+        if (root == null) {
+            return true;
+        }
+        if (min != null && min.data >= root.data) {
+            return false;
+        }
+        if (max != null && max.data <= root.data) {
+            return false;
+        }
+        if (!validBST(root.left, min, root)) {
+            return false;
+        }
+        if (!validBST(root.right, root, max)) {
+            return false;
+        }
+        return true;
+    }
+
+    // function to mirror a BST
+    public static Node mirrorBST(Node root) {
+        if (root == null) {
+            return null;
+        }
+        Node lefts = mirrorBST(root.left);
+        Node rights = mirrorBST(root.right);
+        root.left = rights;
+        root.right = lefts;
+        return root;
+    }
+
+    // function to calcuate balenced BST
+    public static Node balencedBST(ArrayList<Integer> data, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+        int mid = (start + end) / 2;
+        Node root = new Node(data.get(mid));
+        root.left = balencedBST(data, start, mid - 1);
+        root.right = balencedBST(data, mid + 1, end);
+        return root;
+    }
+
+    // function to get Inorder seq
+    public static void inOrderSeq(Node root, ArrayList<Integer> seq) {
+        if (root == null) {
+            return;
+        }
+        inOrderSeq(root.left, seq);
+        seq.add(root.data);
+        inOrderSeq(root.right, seq);
+    }
+
+    // function to create balanced BST form a unbalanced BST
+    public static Node ubBSTbBST(Node root) {
+        ArrayList<Integer> seq = new ArrayList<>();
+        inOrderSeq(root, seq);
+        root = balencedBST(seq, 0, seq.size() - 1);
+        return root;
+    }
+
+    // information class
+    static class Info {
+        boolean isBST;
+        int size;
+        int min;
+        int max;
+
+        public Info(boolean isBST, int size, int min, int max) {
+            this.isBST = isBST;
+            this.size = size;
+            this.min = min;
+            this.max = max;
+        }
+    }
+
+    public static int maxBST = 0;
+
+    public static Info largestBST(Node root) {
+        if (root == null) {
+            return new Info(true, 0, Integer.MAX_VALUE, Integer.MIN_VALUE);
+        }
+        Info leftInfo = largestBST(root.left);
+        Info rightInfo = largestBST(root.right);
+
+        int size = leftInfo.size + rightInfo.size + 1;
+        int min = Math.min(root.data, Math.min(leftInfo.min, rightInfo.min));
+        int max = Math.max(root.data, Math.max(leftInfo.max, rightInfo.max));
+
+        if (root.data <= leftInfo.max || root.data >= rightInfo.min) {
+            return new Info(false, size, min, max);
+        }
+        if ((!leftInfo.isBST) || (!rightInfo.isBST)) {
+            return new Info(false, size, min, max);
+        }
+        maxBST = Math.max(maxBST, size);
+        return new Info(true, size, min, max);
+    }
+
+    // function to merge two BST
+    public static Node merge2BSt(Node root1, Node root2) {
+        ArrayList<Integer> seq1 = new ArrayList<>();
+        ArrayList<Integer> seq2 = new ArrayList<>();
+        ArrayList<Integer> mergedSeq = new ArrayList<>();
+
+        inOrderSeq(root1, seq1);
+        inOrderSeq(root2, seq2);
+        int i = 0;
+        int j = 0;
+        while ((i < seq1.size()) && (j < seq2.size())) {
+            if (seq1.get(i) <= seq2.get(j)) {
+                mergedSeq.add(seq1.get(i));
+                i++;
+            } else {
+                mergedSeq.add(seq2.get(j));
+                j++;
+            }
+        }
+        while (i < seq1.size()) {
+            mergedSeq.add(seq1.get(i));
+            i++;
+        }
+        while (j < seq2.size()) {
+            mergedSeq.add(seq2.get(j));
+            j++;
+        }
+        return balencedBST(mergedSeq, 0, i + j - 1);
+    }
+
     public static void main(String[] args) {
-        Node root = null;
-        int data[] = { 8, 5, 3, 6, 10, 11, 14 };
-        root = buildTree(root, data);
+        // int data[] = { 8, 5, 3, 6, 10, 11, 14 };
+        // int data[] = { 8, 5, 3, 6, 10, 11 };
+        // int data[] = { 3, 5, 6, 8, 10, 11, 12 };
+        Node root = new Node(50);
+        root.left = new Node(30);
+        root.right = new Node(60);
+        root.left.left = new Node(5);
+        root.left.right = new Node(20);
+        root.right.left = new Node(45);
+        root.right.right = new Node(70);
+        root.right.right.left = new Node(65);
+        root.right.right.right = new Node(80);
+        /// test tree
+        // 50
+        // / \
+        // 30 60
+        // / \ / \
+        // 5 20 45 70
+        // / \
+        // 65 80
+
+        // test tree 1
+        Node root1 = new Node(2);
+        root1.left = new Node(1);
+        root1.right = new Node(4);
+
+        // test tree 2
+        Node root2 = new Node(9);
+        root2.left = new Node(3);
+        root2.right = new Node(12);
+
+        inOrder(root1);
+        System.out.println();
+        inOrder(root2);
+        System.out.println();
+        root = merge2BSt(root1, root2);
         inOrder(root);
         System.out.println();
-        root2leaf(root, new ArrayList<>());
+        System.out.println(root.right.data);
     }
 }
