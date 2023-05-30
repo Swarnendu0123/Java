@@ -319,8 +319,8 @@ public class BST {
         // 30 60
         // / \ / \
         // 5 20 45 70
-        // / \
-        // 65 80
+        //         / \
+        //        65 80
 
         // test tree 1
         Node root1 = new Node(2);
