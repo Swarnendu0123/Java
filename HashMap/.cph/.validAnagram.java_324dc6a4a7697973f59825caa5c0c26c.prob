@@ -1,0 +1,1 @@
+{"name":"Local: validAnagram","url":"e:\\Git files\\java\\HashMap\\validAnagram.java","tests":[{"id":1685890023207,"input":"abdddicaa cebadaadd","output":"false"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\Git files\\java\\HashMap\\validAnagram.java","group":"local","local":true}
