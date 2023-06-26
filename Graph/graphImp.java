@@ -91,6 +91,7 @@ public class graphImp {
     }
 
     // function to detect circle in a graph
+    // Time Complixity = O(n)
     public static boolean isCycle(ArrayList<Edge> graph[]) {
         boolean[] visited = new boolean[graph.length];
         for (int i = 0; i < graph.length; i++) {
