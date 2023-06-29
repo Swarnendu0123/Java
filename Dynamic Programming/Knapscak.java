@@ -32,14 +32,14 @@ public class Knapscak {
         }
         if (wt[n - 1] <= W) {// we can include
             // include
-            int ans1 = knapsack(value, wt, n - 1, W - wt[n - 1]) + value[n - 1];
+            int ans1 = knapsackMemo(value, wt, n - 1, W - wt[n - 1], dp) + value[n - 1];
             // exclude
-            int ans2 = knapsack(value, wt, n - 1, W);
+            int ans2 = knapsackMemo(value, wt, n - 1, W, dp);
             dp[n][W] = Math.max(ans1, ans2);
             return dp[n][W];
         } else {
             // exclude
-            dp[n][W] = knapsack(value, wt, n - 1, W);
+            dp[n][W] = knapsackMemo(value, wt, n - 1, W, dp);
             return dp[n][W];
         }
     }
@@ -71,7 +71,14 @@ public class Knapscak {
         int[] wt = { 2, 5, 1, 3, 4 };
         int W = 7;
 
-        int ans = knapsack(value, wt, wt.length, 7);
-        System.out.println(ans);
+        System.out.println(knapsack(value, wt, value.length, W));
+        int[][] dp = new int[value.length + 1][W + 1];
+        for (int i = 0; i < dp.length; i++) {
+            for (int j = 0; j < dp[0].length; j++) {
+                dp[i][j] = -1;
+            }
+        }
+        System.out.println(knapsackMemo(value, wt, wt.length, 7, dp));
+        System.out.println(knapsackTab(value, wt, value.length, W));
     }
 }
