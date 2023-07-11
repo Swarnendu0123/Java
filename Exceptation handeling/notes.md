@@ -163,7 +163,7 @@ Error: myException: negative number
 Error msg: negative number
 ```
 
-# Hierarchy Of Exception Class And Checked Unchecked Exception
+# ierarchy Of Exception Class And Checked Unchecked Exception
 
 ```Java
 import java.io.BufferedReader;
@@ -189,4 +189,6 @@ public class test4 {
 compiler will check it by himself
 ## Unchecked exceptation
 compiler will not check it by himself
+
+# Hierarchy Of Exception 
 ![ierarchy Of Exception](./assets/exception-hierarchy-in-java.webp)
