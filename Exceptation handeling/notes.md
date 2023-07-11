@@ -162,3 +162,31 @@ Enter a valid number
 Error: myException: negative number
 Error msg: negative number
 ```
+
+# Hierarchy Of Exception Class And Checked Unchecked Exception
+
+```Java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class test4 {
+    public static void main(String[] args) {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = null;
+        try {
+            str = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(str);
+    }
+}
+
+```
+
+## Checked exceptation
+compiler will check it by himself
+## Unchecked exceptation
+compiler will not check it by himself
+![ierarchy Of Exception](./assets/exception-hierarchy-in-java.webp)
