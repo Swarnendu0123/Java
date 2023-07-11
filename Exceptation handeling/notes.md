@@ -21,6 +21,7 @@ System.out.println(sum);
 
 A runtime error, also known as an exception, occurs during the execution of a program when an unexpected condition arises. These errors may be due to factors such as invalid input, division by zero, or resource unavailability. By using exception handling, we can catch and handle these runtime errors, preventing the program from crashing and providing appropriate feedback to the user.
 
+# Exampe1
 ```java
 // Normal statements
 int a = 10;
@@ -41,6 +42,25 @@ Output:
 ```
 Some error occurred
 Bye
+```
+# Exampe2
+```java
+// normal statement
+        int data[] = { 1, 2, 3, 4, 5 };
+        // critical exceptation
+        try {
+            int temp = data[data.length];
+            System.out.println(temp);
+        } catch (Exception e) {
+            System.err.println("Error: " + e);
+        }
+        System.out.println("Bye");
+```
+
+Output:
+```
+Bye
+Error: java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
 ```
 
 In the above code snippet, a division by zero occurs when `a` is divided by `b`. To prevent the program from terminating abruptly, we catch the `Exception` and display a custom error message. The program continues to execute, and "Bye" is printed after the exception handling block.
