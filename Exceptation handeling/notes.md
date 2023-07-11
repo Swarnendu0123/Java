@@ -163,7 +163,7 @@ Error: myException: negative number
 Error msg: negative number
 ```
 
-# ierarchy Of Exception Class And Checked Unchecked Exception
+# Hierarchy Of Exception Class And Checked Unchecked Exception
 
 ```Java
 import java.io.BufferedReader;
