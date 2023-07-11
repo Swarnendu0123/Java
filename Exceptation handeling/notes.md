@@ -1,4 +1,4 @@
-# Exception Handling #
+## Exception Handling 
 
 Exception handling is a crucial aspect of programming that allows developers to gracefully handle and manage errors that occur during the execution of a program. Here are three common types of errors and their corresponding exception handling techniques:
 
@@ -96,7 +96,7 @@ public class test1 {
 }
 ```
 
-# Example 3
+# Example 4
 we can also create the exceptation 
 ```
 public class test3 {
