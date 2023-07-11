@@ -1,4 +1,4 @@
-## Exception Handling 
+# Exception Handling 
 
 Exception handling is a crucial aspect of programming that allows developers to gracefully handle and manage errors that occur during the execution of a program. Here are three common types of errors and their corresponding exception handling techniques:
 
@@ -21,7 +21,7 @@ System.out.println(sum);
 
 A runtime error, also known as an exception, occurs during the execution of a program when an unexpected condition arises. These errors may be due to factors such as invalid input, division by zero, or resource unavailability. By using exception handling, we can catch and handle these runtime errors, preventing the program from crashing and providing appropriate feedback to the user.
 
-# Example 1
+## Example 1
 ```java
 // Normal statements
 int a = 10;
@@ -48,7 +48,7 @@ In the above code snippet, a division by zero occurs when `a` is divided by `b`.
 
 Exception handling is a valuable technique for building robust and fault-tolerant applications. It allows programmers to gracefully handle errors and provide appropriate feedback to users, improving the overall user experience.
 
-# Example 2
+## Example 2
 ```java
 // normal statement
         int data[] = { 1, 2, 3, 4, 5 };
@@ -68,7 +68,7 @@ Bye
 Error: java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
 ```
 
-# Example 3
+## Example 3
 
 ```Java
 class Demo {
@@ -96,16 +96,16 @@ public class test1 {
 }
 ```
 
-# Example 4
+## Example 4
 we can also create the exceptation 
-```
+```Java
 public class test3 {
     public static void main(String[] args) {
         int num1 = 10;
         int num2 = -2;
         try {
             if (num2 < 0) {
-                Exception e = new ArithmeticException();
+                Exception e = new ArithmeticException("negative number");
                 throw e;
             }
             int result = num1 / num2;
@@ -122,4 +122,43 @@ Output:
 ```
 Enter a valid number
 Error: java.lang.ArithmeticException
+```
+
+## Example 5
+we can also create our own exceptation 
+```Java
+class myException extends Exception{
+    myException(){
+
+    }
+    myException(String msg){
+        super(msg);
+    }
+}
+
+public class test3 {
+    public static void main(String[] args) {
+        int num1 = 10;
+        int num2 = -2;
+        try {
+            if (num2 < 0) {
+                Exception e = new myException("negative number");
+                throw e;
+            }
+            int result = num1 / num2;
+            System.out.println(result);
+        } catch (Exception e) {
+            System.out.println("Enter a valid number");
+            System.out.println("Error: " + e);
+            System.out.println("Error msg: " + e.getMessage());
+        }
+    }
+}
+
+```
+Output: 
+```
+Enter a valid number
+Error: myException: negative number
+Error msg: negative number
 ```
