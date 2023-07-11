@@ -1,14 +1,13 @@
+import java.util.*;
+
 public class test {
     public static void main(String[] args) {
-        // normal statement
-        int data[] = { 1, 2, 3, 4, 5 };
-        // critical exceptation
-        try {
-            int temp = data[data.length];
-            System.out.println(temp);
+        int name = 0;
+        try (Scanner in = new Scanner(System.in)) {
+            name = in.nextInt();
         } catch (Exception e) {
-            System.err.println("Error: " + e);
+            System.out.println("some error occured");
         }
-        System.out.println("Bye");
+        System.out.println(name);
     }
 }

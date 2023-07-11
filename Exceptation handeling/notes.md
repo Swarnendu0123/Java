@@ -21,7 +21,7 @@ System.out.println(sum);
 
 A runtime error, also known as an exception, occurs during the execution of a program when an unexpected condition arises. These errors may be due to factors such as invalid input, division by zero, or resource unavailability. By using exception handling, we can catch and handle these runtime errors, preventing the program from crashing and providing appropriate feedback to the user.
 
-# Exampe1
+# Example 1
 ```java
 // Normal statements
 int a = 10;
@@ -43,7 +43,12 @@ Output:
 Some error occurred
 Bye
 ```
-# Exampe2
+
+In the above code snippet, a division by zero occurs when `a` is divided by `b`. To prevent the program from terminating abruptly, we catch the `Exception` and display a custom error message. The program continues to execute, and "Bye" is printed after the exception handling block.
+
+Exception handling is a valuable technique for building robust and fault-tolerant applications. It allows programmers to gracefully handle errors and provide appropriate feedback to users, improving the overall user experience.
+
+# Example 2
 ```java
 // normal statement
         int data[] = { 1, 2, 3, 4, 5 };
@@ -63,6 +68,30 @@ Bye
 Error: java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
 ```
 
-In the above code snippet, a division by zero occurs when `a` is divided by `b`. To prevent the program from terminating abruptly, we catch the `Exception` and display a custom error message. The program continues to execute, and "Bye" is printed after the exception handling block.
+# Example 3
 
-Exception handling is a valuable technique for building robust and fault-tolerant applications. It allows programmers to gracefully handle errors and provide appropriate feedback to users, improving the overall user experience.
+```Java
+class Demo {
+    public void a() {
+        try {
+            b();
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
+        }
+    }
+
+    void b() throws Exception {
+        int num1 = 10;
+        int num2 = 0;
+        int result = num1 / num2;
+        System.out.println(result);
+    }
+}
+
+public class test1 {
+    public static void main(String[] args) {
+        Demo d = new Demo();
+        d.a();
+    }
+}
+```
